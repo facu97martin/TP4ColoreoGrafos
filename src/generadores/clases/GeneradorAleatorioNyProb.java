@@ -1,15 +1,14 @@
 package generadores.clases;
 
-import generadores.interfaces.GeneradorAleatorios;
+import generadores.interfaces.GeneradorGrafos;
 import grafos.MatrizSimetrica;
 
-public class GeneradorNyProb implements GeneradorAleatorios {
+public class GeneradorAleatorioNyProb implements GeneradorGrafos {
 
 	private int nodos;
 	private double probArista; // entre 0 y 1
 
-	public GeneradorNyProb(int nodos, double probArista) {
-
+	public GeneradorAleatorioNyProb(int nodos, double probArista) {
 		this.nodos = nodos;
 		this.probArista = probArista;
 	}
