@@ -1,7 +1,7 @@
-package generadores.clases;
+package generadores.clases.aleatorio;
 
 import generadores.interfaces.GeneradorGrafos;
-import grafos.MatrizSimetrica;
+import matrizsimetrica.MatrizSimetrica;
 
 public class GeneradorAleatorioNyProb implements GeneradorGrafos {
 

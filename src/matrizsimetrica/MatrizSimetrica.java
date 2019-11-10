@@ -1,4 +1,4 @@
-package grafos;
+package matrizsimetrica;
 
 public class MatrizSimetrica {
 
