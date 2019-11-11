@@ -57,14 +57,14 @@ public class MatrizSimetrica {
 		return vector[getIndex(i, j)];
 
 	}
-	
+
 	public boolean getValor(int index) throws IndexOutOfBoundsException {
-		if(index >= this.vectorSize) {
+		if (index >= this.vectorSize) {
 			throw new IndexOutOfBoundsException("Elija valores menores a " + this.vectorSize);
 		}
-		
+
 		return vector[index];
-		
+
 	}
 
 	public void setValor(int i, int j, boolean valor) throws IndexOutOfBoundsException {
@@ -73,7 +73,7 @@ public class MatrizSimetrica {
 		}
 		vector[getIndex(i, j)] = valor;
 	}
-	
+
 	public void setValor(int index, boolean valor) throws IndexOutOfBoundsException {
 		if (index >= this.vectorSize) {
 			throw new IndexOutOfBoundsException("Elija valores menores a " + this.vectorSize);
@@ -88,7 +88,6 @@ public class MatrizSimetrica {
 		for (int i = 0; i < orden; i++) {
 			for (int j = 0; j < orden; j++) {
 				if (vector[getIndex(i, j)]) {
-
 					string += "[1]";
 				} else {
 					string += "[-]";
