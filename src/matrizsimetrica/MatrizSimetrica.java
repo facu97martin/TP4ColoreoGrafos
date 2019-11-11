@@ -6,10 +6,51 @@ public class MatrizSimetrica {
 	private final int orden;
 	private final int vectorSize;
 
+	// variables para escribir archivos
+
+	private int nodos;
+	private int aristas = 0;
+	private double porcAdy;
+	private int grMax;
+	private int grMin;
+
 	public MatrizSimetrica(int orden) {
 		this.orden = orden;
 		vector = new boolean[vectorSize(orden)];
 		vectorSize = vectorSize(orden);
+	}
+
+	public void calcularVariablesInternas() {
+
+		this.nodos = this.orden;
+
+		int[] grado = new int[this.nodos];
+
+		for (int i = 0; i < this.nodos; i++) {
+			for (int j = i + 1; j < this.nodos; j++) {
+				if (this.getValor(i, j)) {
+					aristas++;
+					grado[i]++;
+					grado[j]++;
+				}
+			}
+		}
+		this.porcAdy = (double) this.aristas / ((this.nodos * (this.nodos - 1)) / 2);
+
+		int min = nodos - 1;
+		int max = 0;
+
+		for (int i : grado) {
+			if (i < min) {
+				min = i;
+			}
+			if (i > max) {
+				max = i;
+			}
+		}
+		this.grMax = max;
+		this.grMin = min;
+
 	}
 
 	public MatrizSimetrica(boolean[][] matriz, int orden) {
@@ -97,6 +138,38 @@ public class MatrizSimetrica {
 		}
 
 		return string;
+	}
+
+	public boolean[] getVector() {
+		return vector;
+	}
+
+	public int getOrden() {
+		return orden;
+	}
+
+	public int getVectorSize() {
+		return vectorSize;
+	}
+
+	public int getNodos() {
+		return nodos;
+	}
+
+	public int getAristas() {
+		return aristas;
+	}
+
+	public double getPorcAdy() {
+		return porcAdy;
+	}
+
+	public int getGrMax() {
+		return grMax;
+	}
+
+	public int getGrMin() {
+		return grMin;
 	}
 
 }

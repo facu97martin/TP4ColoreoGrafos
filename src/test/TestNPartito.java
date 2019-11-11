@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import generadores.clases.npartito.GeneradorNPartito;
 import matrizsimetrica.MatrizSimetrica;
 
+@SuppressWarnings("unused")
 class TestNPartito {
 
 	@Test
