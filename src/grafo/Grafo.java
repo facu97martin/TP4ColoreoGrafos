@@ -24,7 +24,9 @@ public class Grafo {
 
 		listaNodos.get(0).setColor(colorActual);
 
-		for (int i = 1; i < listaNodos.size(); i++) {
+		int orden = listaNodos.size();
+
+		for (int i = 1; i < orden; i++) {
 			colorActual = colorear(listaNodos, i, colorActual);
 		}
 
@@ -44,23 +46,29 @@ public class Grafo {
 
 		for (i = 0; i < posActual; i++) {
 
-			if (matriz.getValor(posAColorear, listaNodos.get(i).getNodo())) {
-				int colorActual = listaNodos.get(i).getColor(); // si hay arista, agrego el color a la lista de no
-																// posibles, evitando duplicados
-				if (coloresNoPosibles.contains(colorActual)) {
+			nodoI = listaNodos.get(i);
+
+			if (matriz.getValor(posAColorear, nodoI.getNodo())) {
+				int colorActual = nodoI.getColor(); // si hay arista, agrego el color a la lista de no
+													// posibles, evitando duplicados
+				if (!coloresNoPosibles.contains(colorActual)) {
 					coloresNoPosibles.add(colorActual);
 				}
 			}
 		}
 
+		i = 1;
+
 		while (i < posActual) {
 			if (!coloresNoPosibles.contains(i)) {
 				nodoAColorear.setColor(i);
 				return colorMax;
+			} else {
+				i++;
 			}
 		}
 		colorMax++;
-		nodoAColorear.setColor(i);
+		nodoAColorear.setColor(colorMax);
 		return colorMax;
 	}
 
