@@ -33,7 +33,7 @@ class TestGrafo {
 
 		System.out.println(grafo);
 		System.out.println(grafo.getNodos());
-		System.out.println(grafo.colorearMatula().getNodos());
+		System.out.println(grafo.colorearAleatorio().getNodos());
 		System.out.println(grafo.colorearMatula().getNodos());
 		System.out.println(grafo.colorearPowell().getNodos());
 
