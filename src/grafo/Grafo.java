@@ -32,24 +32,36 @@ public class Grafo {
 
 	}
 
-	private int colorear(List<Nodo> listaNodos, int posActual, int color) {
+	private int colorear(List<Nodo> listaNodos, int posActual, int colorMax) {
 
-		int colorActual = 1;
+		List<Integer> coloresNoPosibles = new ArrayList<Integer>();
 
 		Nodo nodoAColorear = listaNodos.get(posActual);
 		int posAColorear = nodoAColorear.getNodo();
 
-		int i = 1;
+		int i;
 		Nodo nodoI;
-		while (i <= posActual) {
-			if ((matriz.getValor(posAColorear, (nodoI = listaNodos.get(i)).getNodo()))
-					&& (colorActual != nodoI.getColor())) {
 
+		for (i = 0; i < posActual; i++) {
+
+			if (matriz.getValor(posAColorear, listaNodos.get(i).getNodo())) {
+				int colorActual = listaNodos.get(i).getColor(); // si hay arista, agrego el color a la lista de no
+																// posibles, evitando duplicados
+				if (coloresNoPosibles.contains(colorActual)) {
+					coloresNoPosibles.add(colorActual);
+				}
 			}
-			i++;
-
 		}
-		return 1;
+
+		while (i < posActual) {
+			if (!coloresNoPosibles.contains(i)) {
+				nodoAColorear.setColor(i);
+				return colorMax;
+			}
+		}
+		colorMax++;
+		nodoAColorear.setColor(i);
+		return colorMax;
 	}
 
 	private List<Nodo> ordenarAleatorio() {
