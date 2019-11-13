@@ -1,10 +1,14 @@
 package matrizsimetrica;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 public class MatrizSimetrica {
 
 	private boolean[] vector;
-	private final int orden;
-	private final int vectorSize;
+	private int orden;
+	private int vectorSize;
 
 	// variables para escribir archivos
 
@@ -18,6 +22,33 @@ public class MatrizSimetrica {
 		this.orden = orden;
 		vector = new boolean[vectorSize(orden)];
 		vectorSize = vectorSize(orden);
+	}
+
+	public MatrizSimetrica(String fileName) {
+
+		try {
+			Scanner sc = new Scanner(new File(fileName));
+			this.orden = this.nodos = sc.nextInt();
+			this.aristas = sc.nextInt();
+			this.porcAdy = sc.nextDouble();
+			this.grMax = sc.nextInt();
+			this.grMin = sc.nextInt();
+
+			this.vectorSize = vectorSize(orden);
+
+			this.vector = new boolean[getVectorSize()];
+			for (int i = 0; i < this.aristas; i++) {
+				this.setValor(sc.nextInt() - 1, sc.nextInt() - 1, true);
+			}
+
+			sc.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Error al abrir el archivo " + fileName);
+			e.printStackTrace();
+			return;
+		}
+
 	}
 
 	public void calcularVariablesInternas() {

@@ -18,7 +18,7 @@ class TestEntradaSalida {
 	@Test
 	void test() throws Exception {
 		
-		int nodos = 10;
+		int nodos = 12;
 		int partes = 2;
 		
 		int grado = 5;

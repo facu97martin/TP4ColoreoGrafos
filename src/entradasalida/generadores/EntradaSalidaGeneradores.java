@@ -24,7 +24,7 @@ public class EntradaSalidaGeneradores {
 			pw.println(
 					nodos + DELIM + 
 					matriz.getAristas() + DELIM + 
-					String.format("%2.0f", matriz.getPorcAdy() * 100)	+ "%" + DELIM + 
+					String.format("%2.4f", matriz.getPorcAdy()) + DELIM + 
 					matriz.getGrMax() + DELIM + 
 					matriz.getGrMin()/* + FIN_LINEA*/);
 			
