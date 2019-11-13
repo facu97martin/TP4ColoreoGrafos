@@ -1,10 +1,10 @@
-package generadores.clases.npartito;
+package generadores;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import generadores.interfaces.GeneradorGrafos;
-import matrizsimetrica.MatrizSimetrica;
+import grafo.MatrizSimetrica;
 
 public class GeneradorNPartito implements GeneradorGrafos {
 

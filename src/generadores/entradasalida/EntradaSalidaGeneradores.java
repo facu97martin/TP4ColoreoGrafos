@@ -1,10 +1,10 @@
-package entradasalida.generadores;
+package generadores.entradasalida;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
-import matrizsimetrica.MatrizSimetrica;
+import grafo.MatrizSimetrica;
 
 public class EntradaSalidaGeneradores {
 

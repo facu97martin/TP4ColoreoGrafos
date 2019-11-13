@@ -1,10 +1,8 @@
 package test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import generadores.clases.aleatorio.GeneradorAleatorioNyAdyacencia;
-import generadores.clases.aleatorio.GeneradorAleatorioNyProb;
-import matrizsimetrica.MatrizSimetrica;
+import generadores.GeneradorAleatorioNyAdyacencia;
+import generadores.GeneradorAleatorioNyProb;
+import grafo.MatrizSimetrica;
 
 @SuppressWarnings("unused")
 class TestAleatorias {

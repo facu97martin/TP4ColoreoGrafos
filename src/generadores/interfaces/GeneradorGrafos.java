@@ -1,6 +1,6 @@
 package generadores.interfaces;
 
-import matrizsimetrica.MatrizSimetrica;
+import grafo.MatrizSimetrica;
 
 public interface GeneradorGrafos {
 	

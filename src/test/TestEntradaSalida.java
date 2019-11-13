@@ -1,17 +1,14 @@
 package test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
 
-import entradasalida.generadores.EntradaSalidaGeneradores;
-import generadores.clases.aleatorio.GeneradorAleatorioNyAdyacencia;
-import generadores.clases.aleatorio.GeneradorAleatorioNyProb;
-import generadores.clases.npartito.GeneradorNPartito;
-import generadores.clases.regular.GeneradorRegularNyAdyacencia;
-import generadores.clases.regular.GeneradorRegularNyGrado;
+import generadores.GeneradorAleatorioNyAdyacencia;
+import generadores.GeneradorAleatorioNyProb;
+import generadores.GeneradorNPartito;
+import generadores.GeneradorRegularNyAdyacencia;
+import generadores.GeneradorRegularNyGrado;
+import generadores.entradasalida.EntradaSalidaGeneradores;
 import generadores.interfaces.GeneradorGrafos;
-import matrizsimetrica.MatrizSimetrica;
 
 class TestEntradaSalida {
 

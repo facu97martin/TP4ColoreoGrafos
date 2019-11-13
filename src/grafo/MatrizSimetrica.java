@@ -1,4 +1,4 @@
-package matrizsimetrica;
+package grafo;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -50,6 +50,38 @@ public class MatrizSimetrica {
 		}
 
 	}
+	
+
+	public MatrizSimetrica(boolean[][] matriz, int orden) {
+
+		vector = new boolean[vectorSize(orden)];
+
+		this.orden = orden;
+
+		for (int i = 0; i < orden; i++) {
+			for (int j = i; j < orden; j++) {
+				vector[getIndex(i, j)] = matriz[i][j];
+			}
+		}
+		vectorSize = vectorSize(orden);
+	}
+
+	public MatrizSimetrica(boolean[] vector, int orden) {
+		this.vector = vector;
+		this.orden = orden;
+		vectorSize = vectorSize(orden);
+	}
+	
+	public int getGrado(int nodo) {
+		int grado = 0;
+		int j = nodo-1;
+		for(int i = 0; i < this.orden; i++) {
+			if(this.getValor(i,j) == true) {
+				grado++;
+			}
+		}
+		return grado;
+	}
 
 	public void calcularVariablesInternas() {
 
@@ -82,26 +114,6 @@ public class MatrizSimetrica {
 		this.grMax = max;
 		this.grMin = min;
 
-	}
-
-	public MatrizSimetrica(boolean[][] matriz, int orden) {
-
-		vector = new boolean[vectorSize(orden)];
-
-		this.orden = orden;
-
-		for (int i = 0; i < orden; i++) {
-			for (int j = i; j < orden; j++) {
-				vector[getIndex(i, j)] = matriz[i][j];
-			}
-		}
-		vectorSize = vectorSize(orden);
-	}
-
-	public MatrizSimetrica(boolean[] vector, int orden) {
-		this.vector = vector;
-		this.orden = orden;
-		vectorSize = vectorSize(orden);
 	}
 
 	private int vectorSize(int orden) {

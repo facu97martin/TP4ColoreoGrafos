@@ -1,11 +1,11 @@
-package generadores.clases.aleatorio;
+package generadores;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 import generadores.interfaces.GeneradorGrafos;
-import matrizsimetrica.MatrizSimetrica;
+import grafo.MatrizSimetrica;
 
 public class GeneradorAleatorioNyAdyacencia implements GeneradorGrafos {
 

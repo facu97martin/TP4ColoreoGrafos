@@ -1,11 +1,10 @@
 package test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
 
-import generadores.clases.regular.*;
-import matrizsimetrica.MatrizSimetrica;
+import generadores.GeneradorRegularNyAdyacencia;
+import generadores.GeneradorRegularNyGrado;
+import grafo.MatrizSimetrica;
 
 @SuppressWarnings("unused")
 class TestRegulares {

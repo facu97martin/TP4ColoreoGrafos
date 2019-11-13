@@ -1,11 +1,9 @@
 package test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
 
-import generadores.clases.npartito.GeneradorNPartito;
-import matrizsimetrica.MatrizSimetrica;
+import generadores.GeneradorNPartito;
+import grafo.MatrizSimetrica;
 
 @SuppressWarnings("unused")
 class TestNPartito {

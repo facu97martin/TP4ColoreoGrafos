@@ -1,22 +1,17 @@
-package generadores.clases.regular;
+package generadores;
 
-import generadores.exceptions.GrafoRegularException;
 import generadores.interfaces.GeneradorGrafos;
-import matrizsimetrica.MatrizSimetrica;
+import grafo.MatrizSimetrica;
 
-public class GeneradorRegularNyGrado implements GeneradorGrafos {
+public class GeneradorRegularNyAdyacencia implements GeneradorGrafos {
 
 	private int nodos;
 	private int grado;
 
-	public GeneradorRegularNyGrado(int nodos, int grado) throws Exception {
+	public GeneradorRegularNyAdyacencia(int nodos, double adyacencia) {
 
-		if (nodos % 2 != 0 && grado % 2 != 0) {
-			throw new GrafoRegularException(
-					"No se puede formar un grafo regular con grado impar, si tiene una cantidad impar de nodos");
-		}
-		this.nodos = nodos;
-		this.grado = grado;
+		this.nodos = nodos;		
+		this.grado = Math.max(0, (int) (this.nodos * adyacencia) - 1);
 	}
 
 	@Override
@@ -42,6 +37,6 @@ public class GeneradorRegularNyGrado implements GeneradorGrafos {
 		}
 
 		return matriz;
-	}
 
+	}
 }
