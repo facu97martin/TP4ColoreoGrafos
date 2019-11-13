@@ -2,6 +2,8 @@ package grafo;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class MatrizSimetrica {
@@ -12,8 +14,8 @@ public class MatrizSimetrica {
 
 	// variables para escribir archivos
 
-	private int nodos;
-	private int aristas = 0;
+	private int cantNodos;
+	private int cantAristas = 0;
 	private double porcAdy;
 	private int grMax;
 	private int grMin;
@@ -28,8 +30,8 @@ public class MatrizSimetrica {
 
 		try {
 			Scanner sc = new Scanner(new File(fileName));
-			this.orden = this.nodos = sc.nextInt();
-			this.aristas = sc.nextInt();
+			this.orden = this.cantNodos = sc.nextInt();
+			this.cantAristas = sc.nextInt();
 			this.porcAdy = sc.nextDouble();
 			this.grMax = sc.nextInt();
 			this.grMin = sc.nextInt();
@@ -37,7 +39,7 @@ public class MatrizSimetrica {
 			this.vectorSize = vectorSize(orden);
 
 			this.vector = new boolean[getVectorSize()];
-			for (int i = 0; i < this.aristas; i++) {
+			for (int i = 0; i < this.cantAristas; i++) {
 				this.setValor(sc.nextInt() - 1, sc.nextInt() - 1, true);
 			}
 
@@ -50,7 +52,6 @@ public class MatrizSimetrica {
 		}
 
 	}
-	
 
 	public MatrizSimetrica(boolean[][] matriz, int orden) {
 
@@ -71,12 +72,12 @@ public class MatrizSimetrica {
 		this.orden = orden;
 		vectorSize = vectorSize(orden);
 	}
-	
+
 	public int getGrado(int nodo) {
 		int grado = 0;
-		int j = nodo-1;
-		for(int i = 0; i < this.orden; i++) {
-			if(this.getValor(i,j) == true) {
+		int j = nodo - 1;
+		for (int i = 0; i < this.orden; i++) {
+			if (this.getValor(i, j) == true) {
 				grado++;
 			}
 		}
@@ -85,22 +86,22 @@ public class MatrizSimetrica {
 
 	public void calcularVariablesInternas() {
 
-		this.nodos = this.orden;
+		this.cantNodos = this.orden;
 
-		int[] grado = new int[this.nodos];
+		int[] grado = new int[this.cantNodos];
 
-		for (int i = 0; i < this.nodos; i++) {
-			for (int j = i + 1; j < this.nodos; j++) {
+		for (int i = 0; i < this.cantNodos; i++) {
+			for (int j = i + 1; j < this.cantNodos; j++) {
 				if (this.getValor(i, j)) {
-					aristas++;
+					cantAristas++;
 					grado[i]++;
 					grado[j]++;
 				}
 			}
 		}
-		this.porcAdy = (double) this.aristas / ((this.nodos * (this.nodos - 1)) / 2);
+		this.porcAdy = (double) this.cantAristas / ((this.cantNodos * (this.cantNodos - 1)) / 2);
 
-		int min = nodos - 1;
+		int min = cantNodos - 1;
 		int max = 0;
 
 		for (int i : grado) {
@@ -136,6 +137,12 @@ public class MatrizSimetrica {
 
 		if (i >= orden || j >= orden) {
 			throw new IndexOutOfBoundsException("Elija valores menores a " + this.orden);
+		}
+		
+		if (i > j) {
+			int aux = i;
+			i = j;
+			j = aux;
 		}
 
 		return vector[getIndex(i, j)];
@@ -196,11 +203,11 @@ public class MatrizSimetrica {
 	}
 
 	public int getNodos() {
-		return nodos;
+		return cantNodos;
 	}
 
 	public int getAristas() {
-		return aristas;
+		return cantAristas;
 	}
 
 	public double getPorcAdy() {
@@ -213,6 +220,25 @@ public class MatrizSimetrica {
 
 	public int getGrMin() {
 		return grMin;
+	}
+
+	public List<Nodo> getListaNodos() {
+
+		List<Nodo> nodos = new ArrayList<Nodo>();
+
+		int[] grados = new int[this.orden];
+
+		for (int i = 0; i < orden; i++) {
+			for (int j = i + 1; j < orden; j++) {
+				if (this.getValor(i, j) == true) {
+					grados[i]++;
+					grados[j]++;
+				}
+			}
+			nodos.add(new Nodo(i, grados[i]));
+		}
+
+		return nodos;
 	}
 
 }
