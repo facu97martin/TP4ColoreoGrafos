@@ -5,11 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import entradasalida.EntradaSalidaColoreados;
-import generadores.*;
-import grafo.*;
+import grafo.Grafo;
+import grafo.ProgramaProbador;
 
-@SuppressWarnings("unused")
-class TestGrafo {
+public class TestProgramaProbador {
 
 	@Test
 	void test() {
@@ -27,5 +26,6 @@ class TestGrafo {
 		assertEquals(true,new ProgramaProbador("Grafo_Aleatorio_NyP.in", "Grafo_Aleatorio_NyP_Coloreado_Powell.out").probarSiEstaColoreadoCorrectamente());
 			
 	}
-
-}
+		
+	}
+	
