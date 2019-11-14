@@ -133,7 +133,8 @@ public class MatrizSimetrica {
 
 	public boolean getValor(int i, int j) throws IndexOutOfBoundsException {
 
-		if (i >= orden || j >= orden) {
+		if (i > orden || j > orden) {
+			//le saco los iguales para que no falle
 			throw new IndexOutOfBoundsException("Elija valores menores a " + this.orden);
 		}
 		

@@ -2,6 +2,7 @@ package grafo;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Locale;
 import java.util.Scanner;
 import java.util.TreeMap;
 import java.util.TreeSet;
@@ -28,7 +29,7 @@ public class ProgramaProbador {
 	private void leerArchivoEntrada(String pathIn) {
 		Scanner scanner = null;
 		try {
-			scanner = new Scanner(new File(pathIn));
+			scanner = new Scanner(new File(pathIn)).useLocale(Locale.US);
 			cantNodosEntrada = scanner.nextInt();
 			grafo = new MatrizSimetrica(cantNodosEntrada);
 			cantAristasEntrada = scanner.nextInt();
@@ -47,9 +48,8 @@ public class ProgramaProbador {
 	private void leerArchivoSalida(String pathOut) {
 		Scanner scanner;
 		try {
-			scanner = new Scanner(new File(pathOut));
+			scanner = new Scanner(new File(pathOut)).useLocale(Locale.US);
 			cantNodosSalida = scanner.nextInt();
-
 			scanner.nextInt();
 			scanner.nextDouble();
 			scanner.nextInt();
