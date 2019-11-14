@@ -99,6 +99,23 @@ public class Grafo {
 		List<Nodo> lista = ordenarAleatorio();
 		return colorearGrafo(lista);
 	}
+	
+	public Grafo colorearMuchasVecesEImprimir(int cantidadVeces) {
+		System.out.println("Cantidad de nodos: " + matriz.getNodos());
+		System.out.println("Porcentaje de adyacencia: " + matriz.getPorcAdy());
+		System.out.println("");
+		System.out.println("Matula");
+		List<Nodo> lista = ordenarMatula();
+		
+		for(int i = 0; i < cantidadVeces; i++){
+			colorearGrafo(lista)
+		}
+		/*
+		 * guardo min colores y minColores pos
+		 * if es igual o mayor ignoro sino sigo
+		 * return min
+		 * */
+	}
 
 	public Grafo colorearMatula() {
 		List<Nodo> lista = ordenarMatula();

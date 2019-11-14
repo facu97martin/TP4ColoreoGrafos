@@ -13,7 +13,6 @@ public class MatrizSimetrica {
 	private int vectorSize;
 
 	// variables para escribir archivos
-
 	private int cantNodos;
 	private int cantAristas = 0;
 	private double porcAdy;
@@ -45,7 +44,6 @@ public class MatrizSimetrica {
 
 			sc.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			System.out.println("Error al abrir el archivo " + fileName);
 			e.printStackTrace();
 			return;

@@ -14,9 +14,9 @@ public class GeneradorAleatorioNyAdyacencia implements GeneradorGrafos {
 	private int aristasPosibles;
 	private int aristasGeneradas;
 
-	public GeneradorAleatorioNyAdyacencia(int nodos, double adyacencia) {
+	public GeneradorAleatorioNyAdyacencia(int nodos, double porcAdyacencia) {
 		this.nodos = nodos;
-		this.porcAdyacencia = adyacencia;
+		this.porcAdyacencia = porcAdyacencia;
 
 		this.aristasPosibles = (nodos * (nodos - 1)) / 2;
 		this.aristasGeneradas = (int) (this.aristasPosibles * this.porcAdyacencia);
