@@ -2,12 +2,12 @@ package test;
 
 import org.junit.jupiter.api.Test;
 
+import entradasalida.EntradaSalidaGeneradores;
 import generadores.GeneradorAleatorioNyAdyacencia;
 import generadores.GeneradorAleatorioNyProb;
 import generadores.GeneradorNPartito;
 import generadores.GeneradorRegularNyAdyacencia;
 import generadores.GeneradorRegularNyGrado;
-import generadores.entradasalida.EntradaSalidaGeneradores;
 import generadores.interfaces.GeneradorGrafos;
 
 class TestEntradaSalida {

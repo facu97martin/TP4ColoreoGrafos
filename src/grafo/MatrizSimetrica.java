@@ -238,5 +238,33 @@ public class MatrizSimetrica {
 
 		return nodos;
 	}
+	
+	public int getCantNodos() {
+		return cantNodos;
+	}
+
+	public void setCantNodos(int cantNodos) {
+		this.cantNodos = cantNodos;
+	}
+
+	public int getCantAristas() {
+		return cantAristas;
+	}
+
+	public void setCantAristas(int cantAristas) {
+		this.cantAristas = cantAristas;
+	}
+
+	public void setPorcAdy(double porcAdy) {
+		this.porcAdy = porcAdy;
+	}
+
+	public void setGrMax(int grMax) {
+		this.grMax = grMax;
+	}
+
+	public void setGrMin(int grMin) {
+		this.grMin = grMin;
+	}
 
 }
