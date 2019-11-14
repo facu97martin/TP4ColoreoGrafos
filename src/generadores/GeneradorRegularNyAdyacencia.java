@@ -35,6 +35,8 @@ public class GeneradorRegularNyAdyacencia implements GeneradorGrafos {
 				gradoAct -= 1;
 			}
 		}
+		
+		matriz.vectorShuffle();
 
 		return matriz;
 

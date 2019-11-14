@@ -3,6 +3,7 @@ package grafo;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -69,6 +70,27 @@ public class MatrizSimetrica {
 		this.vector = vector;
 		this.orden = orden;
 		vectorSize = vectorSize(orden);
+	}
+	
+	public void vectorShuffle() {
+		List<Boolean> lista = new ArrayList<Boolean>();
+		
+		for(int i = 0; i < this.orden; i++) {
+			for(int j = i + 1; j < this.orden; j++) {
+				lista.add(this.getValor(i, j));
+			}
+		}
+		
+		Collections.shuffle(lista);
+		
+		int k = 0;
+		for(int i = 0; i < this.orden; i++) {
+			for(int j = i + 1; j < this.orden; j++) {
+				this.setValor(i, j, lista.get(k));;
+				k++;
+			}
+		}
+		
 	}
 
 	public int getGrado(int nodo) {
