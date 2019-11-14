@@ -18,6 +18,10 @@ public class Main {
 		//System.out.println(grafo.getNodos());
 		grafo.colorearPowell();
 		//System.out.println(grafo.getNodos());
+		MatrizSimetrica matriz2 = new GeneradorAleatorioNyAdyacencia(600, 0.4).generar();
+		Grafo grafo2 = new Grafo(matriz2);
+		System.out.println(grafo2);
+		grafo2.colorearMuchasVecesEImprimir(1000);
 	}
 
 }

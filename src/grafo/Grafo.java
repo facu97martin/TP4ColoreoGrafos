@@ -2,7 +2,9 @@ package grafo;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Grafo {
 
@@ -19,8 +21,12 @@ public class Grafo {
 		this.nodos = nodos;
 	}
 
-	private Grafo colorearGrafo(List<Nodo> listaNodos) {
+	private int colorearGrafo(List<Nodo> listaNodos) {
 		int colorActual = 1;
+		
+		//HashSet no admite duplicados
+		Set<Integer> listaColores = new HashSet<Integer>();
+		listaColores.add(colorActual);
 
 		listaNodos.get(0).setColor(colorActual);
 
@@ -28,9 +34,14 @@ public class Grafo {
 
 		for (int i = 1; i < orden; i++) {
 			colorActual = colorear(listaNodos, i, colorActual);
+			//ignora duplicados
+			listaColores.add(colorActual);
 		}
 
-		return new Grafo(this.matriz, listaNodos);
+		//actualizar Grafo
+		this.nodos = listaNodos;
+		
+		return listaColores.size();
 
 	}
 
@@ -97,34 +108,50 @@ public class Grafo {
 
 	public Grafo colorearAleatorio() {
 		List<Nodo> lista = ordenarAleatorio();
-		return colorearGrafo(lista);
+		colorearGrafo(lista);
+		return this;
 	}
 	
-	public Grafo colorearMuchasVecesEImprimir(int cantidadVeces) {
+	public void colorearMuchasVecesEImprimir(int cantidadVeces) {
 		System.out.println("Cantidad de nodos: " + matriz.getNodos());
-		System.out.println("Porcentaje de adyacencia: " + matriz.getPorcAdy());
-		System.out.println("");
-		System.out.println("Matula");
+		System.out.println("Porcentaje de adyacencia: " + matriz.getPorcAdy() + "\n");
+		
 		List<Nodo> lista = ordenarMatula();
+		recorrerNVecesYmostrar(lista, "Matula", cantidadVeces);
+		
+		List<Nodo> listaAletorio = ordenarAleatorio();
+		recorrerNVecesYmostrar(listaAletorio, "Aleatorio", cantidadVeces);
+		
+		List<Nodo> listaPowell = ordenarPowell();
+		recorrerNVecesYmostrar(listaPowell, "Powell", cantidadVeces);
+	}
+
+	private void recorrerNVecesYmostrar(List<Nodo> lista, String nombreOrdenamiento, int cantidadVeces) {
+		System.out.println(nombreOrdenamiento + ":");
+		int menorCantColores = 0, posMenorCantColores = -1;
 		
 		for(int i = 0; i < cantidadVeces; i++){
-			colorearGrafo(lista)
+			int cantidadDeColores = colorearGrafo(lista);
+			
+			if(cantidadDeColores < menorCantColores) {
+				menorCantColores = cantidadDeColores;
+				posMenorCantColores = i;
+			}
 		}
-		/*
-		 * guardo min colores y minColores pos
-		 * if es igual o mayor ignoro sino sigo
-		 * return min
-		 * */
+		System.out.println("Menor cantidad de colores: " + menorCantColores);
+		System.out.println("En la pasada: " + (posMenorCantColores + 1) + "\n");
 	}
 
 	public Grafo colorearMatula() {
 		List<Nodo> lista = ordenarMatula();
-		return colorearGrafo(lista);
+		colorearGrafo(lista);
+		return this;
 	}
 
 	public Grafo colorearPowell() {
 		List<Nodo> lista = ordenarPowell();
-		return colorearGrafo(lista);
+		colorearGrafo(lista);
+		return this;
 	}
 
 	public String toString() {
