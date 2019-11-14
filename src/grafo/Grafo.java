@@ -8,15 +8,21 @@ public class Grafo {
 
 	private MatrizSimetrica matriz;
 	private List<Nodo> nodos;
+	private int cantColores;
+
+	public int getCantColores() {
+		return cantColores;
+	}
 
 	public Grafo(MatrizSimetrica matriz) {
 		this.matriz = matriz;
 		this.nodos = matriz.getListaNodos();
 	}
-
-	private Grafo(MatrizSimetrica matriz, List<Nodo> nodos) {
+	
+	private Grafo(MatrizSimetrica matriz, List<Nodo> nodos, int cantColores) {
 		this.matriz = matriz;
 		this.nodos = nodos;
+		this.cantColores = cantColores;
 	}
 
 	private Grafo colorearGrafo(List<Nodo> listaNodos) {
@@ -29,9 +35,7 @@ public class Grafo {
 		for (int i = 1; i < orden; i++) {
 			colorActual = colorear(listaNodos, i, colorActual);
 		}
-
-		return new Grafo(this.matriz, listaNodos);
-
+		return new Grafo(this.matriz, listaNodos, colorActual);
 	}
 
 	private int colorear(List<Nodo> listaNodos, int posActual, int colorMax) {

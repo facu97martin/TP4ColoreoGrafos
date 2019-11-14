@@ -1,4 +1,4 @@
-package generadores.entradasalida;
+package entradasalida;
 
 import java.io.File;
 import java.io.FileNotFoundException;
