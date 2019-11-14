@@ -157,7 +157,8 @@ public class MatrizSimetrica {
 	}
 
 	public void setValor(int i, int j, boolean valor) throws IndexOutOfBoundsException {
-		if (i >= orden || j >= orden) {
+		if (i > orden || j > orden) {
+			//le saque el igual en la comparacion por que me fallaba ¿?
 			throw new IndexOutOfBoundsException("Elija valores menores a " + this.orden);
 		}
 		vector[getIndex(i, j)] = valor;
