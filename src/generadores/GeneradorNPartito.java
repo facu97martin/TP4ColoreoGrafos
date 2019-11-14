@@ -42,12 +42,14 @@ public class GeneradorNPartito implements GeneradorGrafos {
 
 		}
 
-		for (int i = 0; i < nodos; i++) {
+		for (int i = 0; i < nodos-1; i++) {
 			for (int j = i + 1; j < nodos; j++) {
 				matriz.setValor(i, j, (mapa.get(i) != mapa.get(j)) && (Math.random() <= 0.85));
 				// le pongo el rand para que no sea completamente conexo en las particiones, pero que se note que ahi se conecta y en  las particiones no
 			}
 		}
+		
+		matriz.vectorShuffle();
 
 		return matriz;
 	}

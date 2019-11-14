@@ -11,10 +11,9 @@ class TestNPartito {
 	@Test
 	void test() {
 		
-		int orden = 24;
-		int particiones = 3;
-		
-		MatrizSimetrica matriz = new GeneradorNPartito(orden, particiones).generar();		
+		int orden = 6;
+		int particiones = 2;
+		MatrizSimetrica matriz = new GeneradorNPartito(orden, particiones).generar();
 		System.out.println(matriz);
 	}
 

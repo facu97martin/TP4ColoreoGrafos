@@ -1,8 +1,12 @@
 package grafo;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 
 public class Grafo {
 
@@ -17,6 +21,7 @@ public class Grafo {
 	public Grafo(MatrizSimetrica matriz) {
 		this.matriz = matriz;
 		this.nodos = matriz.getListaNodos();
+		this.matriz.calcularVariablesInternas();
 	}
 
 	private Grafo(MatrizSimetrica matriz, List<Nodo> nodos, int cantColores) {
@@ -111,25 +116,37 @@ public class Grafo {
 
 	private void recorrerNVecesYmostrar(List<Nodo> lista, String nombreOrdenamiento, int cantidadVeces) {
 		System.out.println(nombreOrdenamiento + ":");
-		int menorCantColores = 0, posMenorCantColores = -1;
 
-		for (int i = 0; i < cantidadVeces; i++) {
-			Grafo grafo = colorearGrafo(lista);
-			lista = grafo.intercambiarElementosLista(nombreOrdenamiento);
-			int cantidadDeColores = grafo.cantColores;
+		try {
+			PrintWriter pw = new PrintWriter(new File(nombreOrdenamiento + ".out"));
 
-			if (cantidadDeColores > menorCantColores) {
-				menorCantColores = cantidadDeColores;
-				posMenorCantColores = i;
+			int menorCantColores = this.getMatriz().getOrden(), posMenorCantColores = -1;
+
+			for (int i = 0; i < cantidadVeces; i++) {
+				Grafo grafo = colorearGrafo(lista);
+				lista = grafo.intercambiarElementosLista(nombreOrdenamiento);
+				int cantidadDeColores = grafo.cantColores;
+
+				pw.println(cantidadDeColores);
+
+				if (cantidadDeColores < menorCantColores) {
+					menorCantColores = cantidadDeColores;
+					posMenorCantColores = i;
+				}
 			}
+			System.out.println("Menor cantidad de colores: " + menorCantColores);
+			System.out.println("En la pasada: " + (posMenorCantColores + 1) + "\n");
+
+			pw.close();
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
 		}
-		System.out.println("Menor cantidad de colores: " + menorCantColores);
-		System.out.println("En la pasada: " + (posMenorCantColores + 1) + "\n");
 	}
 
 	private List<Nodo> intercambiarElementosLista(String nombreOrdenamiento) {
 		Collections.shuffle(nodos);
-		
+
 		switch (nombreOrdenamiento) {
 		case "Matula":
 			ordenarMatula();
