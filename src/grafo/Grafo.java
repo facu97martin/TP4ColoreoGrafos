@@ -5,8 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Grafo {
 
@@ -43,42 +43,32 @@ public class Grafo {
 		return new Grafo(this.matriz, listaNodos, colorActual);
 	}
 
+	@SuppressWarnings("deprecation")
 	private int colorear(List<Nodo> listaNodos, int posActual, int colorMax) {
 
-		List<Integer> coloresNoPosibles = new ArrayList<Integer>();
+		List<Integer> coloresPosibles = new LinkedList<Integer>();
 
-		Nodo nodoAColorear = listaNodos.get(posActual);
-		int posAColorear = nodoAColorear.getNodo();
+		for (int i = 1; i <= colorMax; i++) {
+			coloresPosibles.add(i);
+		}
+		
+		Nodo nodoAct = listaNodos.get(posActual);
 
-		int i;
-		Nodo nodoI;
-
-		for (i = 0; i < posActual; i++) {
-
-			nodoI = listaNodos.get(i);
-
-			if (matriz.getValor(posAColorear, nodoI.getNodo())) {
-				int colorActual = nodoI.getColor(); // si hay arista, agrego el color a la lista de no
-													// posibles, evitando duplicados
-				if (!coloresNoPosibles.contains(colorActual)) {
-					coloresNoPosibles.add(colorActual);
-				}
+		for (int i = 0; i < posActual; i++) {
+			if (this.matriz.getValor(i, posActual)) {
+				coloresPosibles.remove(new Integer(listaNodos.get(i).getColor()));
 			}
 		}
 
-		i = 1;
-
-		while (i < posActual) {
-			if (!coloresNoPosibles.contains(i)) {
-				nodoAColorear.setColor(i);
-				return colorMax;
-			} else {
-				i++;
-			}
+		if (coloresPosibles.isEmpty()) {
+			colorMax++;
+			nodoAct.setColor(colorMax);
+		} else {
+			nodoAct.setColor(coloresPosibles.get(0));
 		}
-		colorMax++;
-		nodoAColorear.setColor(colorMax);
+
 		return colorMax;
+
 	}
 
 	private List<Nodo> ordenarAleatorio() {

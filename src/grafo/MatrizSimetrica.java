@@ -73,6 +73,7 @@ public class MatrizSimetrica {
 	}
 	
 	public void vectorShuffle() {
+		/*
 		List<Boolean> lista = new ArrayList<Boolean>();
 		
 		for(int i = 0; i < this.orden; i++) {
@@ -90,7 +91,7 @@ public class MatrizSimetrica {
 				k++;
 			}
 		}
-		
+		*/
 	}
 
 	public int getGrado(int nodo) {
