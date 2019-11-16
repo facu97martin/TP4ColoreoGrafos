@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 
 public class Grafo {
@@ -31,60 +30,58 @@ public class Grafo {
 	}
 
 	private Grafo colorearGrafo(List<Nodo> listaNodos) {
-		int colorActual = 1;
 
-		listaNodos.get(0).setColor(colorActual);
-
-		int orden = listaNodos.size();
-
-		for (int i = 1; i < orden; i++) {
-			colorActual = colorear(listaNodos, i, colorActual);
-		}
-		return new Grafo(this.matriz, listaNodos, colorActual);
-	}
-
-	@SuppressWarnings("deprecation")
-	private int colorear(List<Nodo> listaNodos, int posActual, int colorMax) {
-
-		List<Integer> coloresPosibles = new LinkedList<Integer>();
-
-		for (int i = 1; i <= colorMax; i++) {
-			coloresPosibles.add(i);
-		}
-		
-		Nodo nodoAct = listaNodos.get(posActual);
-
-		for (int i = 0; i < posActual; i++) {
-			if (this.matriz.getValor(i, posActual)) {
-				coloresPosibles.remove(new Integer(listaNodos.get(i).getColor()));
+		int colorActual = 0;
+		int nodosColoreados = 0;
+		int cantNodos = listaNodos.size();
+		while (nodosColoreados < cantNodos) {
+			colorActual++;
+			for (Nodo nodo : listaNodos) {
+				if (puedoPintar(nodo, listaNodos, colorActual)) {
+					nodo.setColor(colorActual);
+					nodosColoreados++;
+				}
 			}
 		}
 
-		if (coloresPosibles.isEmpty()) {
-			colorMax++;
-			nodoAct.setColor(colorMax);
-		} else {
-			nodoAct.setColor(coloresPosibles.get(0));
+		return new Grafo(this.matriz, listaNodos, colorActual);
+	}
+
+	private boolean puedoPintar(Nodo nodo, List<Nodo> listaNodos, int colorActual) {
+
+		for (Nodo nodoI : listaNodos) {
+			if (this.matriz.getValor(nodoI.getNodo(), nodo.getNodo())) {
+				if (nodoI.getColor() == colorActual) {
+					return false;
+				}
+			}
 		}
-
-		return colorMax;
-
+		return true;
 	}
 
 	private List<Nodo> ordenarAleatorio() {
 		List<Nodo> newList = new ArrayList<Nodo>(this.nodos);
+		for (Nodo nodo : newList) {
+			nodo.setColor(0);
+		}
 		Collections.shuffle(newList);
 		return newList;
 	}
 
 	private List<Nodo> ordenarMatula() {
 		List<Nodo> newList = new ArrayList<Nodo>(this.nodos);
+		for (Nodo nodo : newList) {
+			nodo.setColor(0);
+		}
 		Collections.sort(newList);
 		return newList;
 	}
 
 	private List<Nodo> ordenarPowell() {
 		List<Nodo> newList = new ArrayList<Nodo>(this.nodos);
+		for (Nodo nodo : newList) {
+			nodo.setColor(0);
+		}
 		Collections.sort(newList);
 		Collections.reverse(newList);
 		return newList;
@@ -149,17 +146,17 @@ public class Grafo {
 	}
 
 	public Grafo colorearAleatorio() {
-		List<Nodo> lista = ordenarAleatorio();
+		List<Nodo> lista = new ArrayList<Nodo>(ordenarAleatorio());
 		return colorearGrafo(lista);
 	}
 
 	public Grafo colorearMatula() {
-		List<Nodo> lista = ordenarMatula();
+		List<Nodo> lista = new ArrayList<Nodo>(ordenarMatula());
 		return colorearGrafo(lista);
 	}
 
 	public Grafo colorearPowell() {
-		List<Nodo> lista = ordenarPowell();
+		List<Nodo> lista = new ArrayList<Nodo>(ordenarPowell());
 		return colorearGrafo(lista);
 	}
 
