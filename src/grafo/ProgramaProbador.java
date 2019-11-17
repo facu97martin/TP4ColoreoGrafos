@@ -9,8 +9,8 @@ import java.util.TreeSet;
 public class ProgramaProbador {
 
 	private MatrizSimetrica grafo;
-	private TreeMap<Integer, Integer> nodosColoreados; // Key = Nodo, Value =
-														// Color
+	private TreeMap<Integer, Integer> nodosColoreados; // Key=Nodo, Value=color
+														
 	private TreeSet<Integer> coloresUsados;
 	private int cantNodosEntrada;
 	private int cantNodosSalida;
@@ -80,6 +80,7 @@ public class ProgramaProbador {
 		for (int i = 0; i < grafo.getOrden() - 1; i++) {
 			for (int j = i + 1; j < grafo.getOrden(); j++) {
 				if (grafo.getValor(i, j) && nodosColoreados.get(i) == nodosColoreados.get(j)) {
+					System.out.println(grafo.getValor(i, j));
 					return false;
 				}
 			}

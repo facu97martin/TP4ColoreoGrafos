@@ -12,6 +12,7 @@ public class Grafo {
 	private MatrizSimetrica matriz;
 	private List<Nodo> nodos;
 	private int cantColores;
+	
 
 	public int getCantColores() {
 		return cantColores;
@@ -45,13 +46,15 @@ public class Grafo {
 		}
 
 		return new Grafo(this.matriz, listaNodos, colorActual);
+		
 	}
 
 	private boolean puedoPintar(Nodo nodo, List<Nodo> listaNodos, int colorActual) {
 
 		for (Nodo nodoI : listaNodos) {
-			if (this.matriz.getValor(nodoI.getNodo(), nodo.getNodo())) {
-				if (nodoI.getColor() == colorActual) {
+			if (nodo.getNodo() != nodoI.getNodo() && 
+					this.matriz.getValor(nodo.getNodo(),nodoI.getNodo())) { 
+				if (nodoI.getColor() == colorActual || nodo.getColor()!=0) {//le agrego la condicion de que si ya esta pintado no lo vuelva a pintar
 					return false;
 				}
 			}

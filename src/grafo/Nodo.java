@@ -5,6 +5,7 @@ public class Nodo implements Comparable<Nodo> {
 	private int nodo;
 	private int color;
 	private int grado;
+
 	
 	public Nodo(int nodo, int color, int grado) {
 		super();
