@@ -12,7 +12,6 @@ public class Grafo {
 	private MatrizSimetrica matriz;
 	private List<Nodo> nodos;
 	private int cantColores;
-	
 
 	public int getCantColores() {
 		return cantColores;
@@ -46,15 +45,15 @@ public class Grafo {
 		}
 
 		return new Grafo(this.matriz, listaNodos, colorActual);
-		
+
 	}
 
 	private boolean puedoPintar(Nodo nodo, List<Nodo> listaNodos, int colorActual) {
 
 		for (Nodo nodoI : listaNodos) {
-			if (nodo.getNodo() != nodoI.getNodo() && 
-					this.matriz.getValor(nodo.getNodo(),nodoI.getNodo())) { 
-				if (nodoI.getColor() == colorActual || nodo.getColor()!=0) {//le agrego la condicion de que si ya esta pintado no lo vuelva a pintar
+			if (nodo.getNodo() != nodoI.getNodo() && this.matriz.getValor(nodo.getNodo(), nodoI.getNodo())) {
+				if (nodoI.getColor() == colorActual || nodo.getColor() != 0) {// le agrego la condicion de que si ya
+																				// esta pintado no lo vuelva a pintar
 					return false;
 				}
 			}
@@ -90,31 +89,32 @@ public class Grafo {
 		return newList;
 	}
 
-	public void colorearMuchasVecesEImprimir(int cantidadVeces) {
+	public void colorearMuchasVecesEImprimir(int cantidadVeces, String titulo) {
 		System.out.println("Cantidad de nodos: " + matriz.getNodos());
-		System.out.println("Porcentaje de adyacencia: " + (matriz.getPorcAdy() * 100) + "%\n");
+		System.out.println("Porcentaje de adyacencia: " + String.format("%2.0f",(matriz.getPorcAdy() * 100)) + "%\n");
 
-		List<Nodo> lista = ordenarMatula();
-		recorrerNVecesYmostrar(lista, "Matula", cantidadVeces);
+		List<Nodo> listaMatula = ordenarMatula();
+		recorrerNVecesYmostrar(listaMatula, "Matula", titulo, cantidadVeces);
 
-		List<Nodo> listaAletorio = ordenarAleatorio();
-		recorrerNVecesYmostrar(listaAletorio, "Aleatorio", cantidadVeces);
+		List<Nodo> listaAleatorio = ordenarAleatorio();
+		recorrerNVecesYmostrar(listaAleatorio, "Aleatorio", titulo, cantidadVeces);
 
 		List<Nodo> listaPowell = ordenarPowell();
-		recorrerNVecesYmostrar(listaPowell, "Powell", cantidadVeces);
+		recorrerNVecesYmostrar(listaPowell, "Powell", titulo, cantidadVeces);
 	}
 
-	private void recorrerNVecesYmostrar(List<Nodo> lista, String nombreOrdenamiento, int cantidadVeces) {
-		System.out.println(nombreOrdenamiento + ":");
+	private void recorrerNVecesYmostrar(List<Nodo> lista, String nombreOrdenamiento, String titulo, int cantidadVeces) {
+		System.out.println(nombreOrdenamiento + "_" + titulo + ":");
 
 		try {
-			PrintWriter pw = new PrintWriter(new File(nombreOrdenamiento + ".out"));
+			PrintWriter pw = new PrintWriter(new File(nombreOrdenamiento + "_" + titulo + ".out"));
 
 			int menorCantColores = this.getMatriz().getOrden(), posMenorCantColores = -1;
 
 			for (int i = 0; i < cantidadVeces; i++) {
-				Grafo grafo = colorearGrafo(lista);
-				lista = grafo.intercambiarElementosLista(nombreOrdenamiento);
+				Grafo grafo;
+				lista = intercambiarElementosLista(nombreOrdenamiento);
+				grafo = colorearGrafo(lista);
 				int cantidadDeColores = grafo.cantColores;
 
 				pw.println(cantidadDeColores);
@@ -136,6 +136,10 @@ public class Grafo {
 
 	private List<Nodo> intercambiarElementosLista(String nombreOrdenamiento) {
 		Collections.shuffle(nodos);
+		
+		for (Nodo nodo : nodos) {
+			nodo.setColor(0);
+		}
 
 		switch (nombreOrdenamiento) {
 		case "Matula":
@@ -150,16 +154,25 @@ public class Grafo {
 
 	public Grafo colorearAleatorio() {
 		List<Nodo> lista = new ArrayList<Nodo>(ordenarAleatorio());
+		for (Nodo nodo : lista) {
+			nodo.setColor(0);
+		}
 		return colorearGrafo(lista);
 	}
 
 	public Grafo colorearMatula() {
 		List<Nodo> lista = new ArrayList<Nodo>(ordenarMatula());
+		for (Nodo nodo : lista) {
+			nodo.setColor(0);
+		}
 		return colorearGrafo(lista);
 	}
 
 	public Grafo colorearPowell() {
 		List<Nodo> lista = new ArrayList<Nodo>(ordenarPowell());
+		for (Nodo nodo : lista) {
+			nodo.setColor(0);
+		}
 		return colorearGrafo(lista);
 	}
 
