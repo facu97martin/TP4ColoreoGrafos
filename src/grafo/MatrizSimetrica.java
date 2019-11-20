@@ -70,27 +70,19 @@ public class MatrizSimetrica {
 		this.orden = orden;
 		vectorSize = vectorSize(orden);
 	}
-	
+
 	public void vectorShuffle() {
 		/*
-		List<Boolean> lista = new ArrayList<Boolean>();
-		
-		for(int i = 0; i < this.orden; i++) {
-			for(int j = i + 1; j < this.orden; j++) {
-				lista.add(this.getValor(i, j));
-			}
-		}
-		
-		Collections.shuffle(lista);
-		
-		int k = 0;
-		for(int i = 0; i < this.orden; i++) {
-			for(int j = i + 1; j < this.orden; j++) {
-				this.setValor(i, j, lista.get(k));;
-				k++;
-			}
-		}
-		*/
+		 * List<Boolean> lista = new ArrayList<Boolean>();
+		 * 
+		 * for(int i = 0; i < this.orden; i++) { for(int j = i + 1; j < this.orden; j++)
+		 * { lista.add(this.getValor(i, j)); } }
+		 * 
+		 * Collections.shuffle(lista);
+		 * 
+		 * int k = 0; for(int i = 0; i < this.orden; i++) { for(int j = i + 1; j <
+		 * this.orden; j++) { this.setValor(i, j, lista.get(k));; k++; } }
+		 */
 	}
 
 	public int getGrado(int nodo) {
@@ -153,43 +145,19 @@ public class MatrizSimetrica {
 
 	}
 
-	public boolean getValor(int i, int j) throws IndexOutOfBoundsException {
-
-		if (i >= orden || j >= orden) {
-			throw new IndexOutOfBoundsException("Elija valores menores a " + this.orden);
-		}
-		
-		if (i > j) {
-			int aux = i;
-			i = j;
-			j = aux;
-		}
-
+	public boolean getValor(int i, int j) {
 		return vector[getIndex(i, j)];
-
 	}
 
-	public boolean getValor(int index) throws IndexOutOfBoundsException {
-		if (index >= this.vectorSize) {
-			throw new IndexOutOfBoundsException("Elija valores menores a " + this.vectorSize);
-		}
-
+	public boolean getValor(int index) {
 		return vector[index];
-
 	}
 
-	public void setValor(int i, int j, boolean valor) throws IndexOutOfBoundsException {
-		if (i > orden || j > orden) {
-			//le saque el igual en la comparacion por que me fallaba ¿?
-			throw new IndexOutOfBoundsException("Elija valores menores a " + this.orden);
-		}
+	public void setValor(int i, int j, boolean valor) {
 		vector[getIndex(i, j)] = valor;
 	}
 
-	public void setValor(int index, boolean valor) throws IndexOutOfBoundsException {
-		if (index >= this.vectorSize) {
-			throw new IndexOutOfBoundsException("Elija valores menores a " + this.vectorSize);
-		}
+	public void setValor(int index, boolean valor) {
 		vector[index] = valor;
 	}
 
@@ -261,7 +229,7 @@ public class MatrizSimetrica {
 
 		return nodos;
 	}
-	
+
 	public int getCantNodos() {
 		return cantNodos;
 	}
