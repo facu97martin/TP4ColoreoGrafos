@@ -37,7 +37,7 @@ public class Grafo {
 
 		List<Nodo> nodosAColorear = new ArrayList<Nodo>(listaNodos);
 		int cantNodosAColorear = nodosAColorear.size();
-		
+
 		while (nodosColoreados < cantNodos) {
 			int i = 0;
 			colorActual++;
@@ -101,42 +101,35 @@ public class Grafo {
 	}
 
 	public void colorearMuchasVecesEImprimir(int cantidadVeces, String titulo) {
-		System.out.println("Cantidad de nodos: " + matriz.getNodos());
-		System.out.println("Porcentaje de adyacencia: " + String.format("%2.0f", (matriz.getPorcAdy() * 100)) + "%\n");
-		
 		recorrerNVecesYmostrar(this.nodos, "Powell", titulo, cantidadVeces);
-		
 		recorrerNVecesYmostrar(this.nodos, "Aleatorio", titulo, cantidadVeces);
-
 		recorrerNVecesYmostrar(this.nodos, "Matula", titulo, cantidadVeces);
 	}
 
-	private void recorrerNVecesYmostrar(List<Nodo> lista, String nombreOrdenamiento, String titulo, int cantidadVeces) {
-		System.out.println(nombreOrdenamiento + "_" + titulo + ":");
+	private synchronized void recorrerNVecesYmostrar(List<Nodo> lista, String nombreOrdenamiento, String titulo,
+			int cantidadVeces) {
 
+		System.out.println(titulo);
 		try {
-			PrintWriter pw = new PrintWriter(new File(nombreOrdenamiento + "_" + titulo + ".out"));
-
+			PrintWriter pw = new PrintWriter(new File("Estadisticas\\" + nombreOrdenamiento + "_" + titulo + ".out"));
 			int menorCantColores = this.getMatriz().getOrden(), posMenorCantColores = -1;
-
 			for (int i = 0; i < cantidadVeces; i++) {
 				Grafo grafo;
 				lista = intercambiarElementosLista(nombreOrdenamiento);
 				grafo = colorearGrafo(lista);
 				int cantidadDeColores = grafo.cantColores;
-
 				pw.println(cantidadDeColores);
+
+				if (i % 500 == 0) { // sout de control
+					System.out.println(i + ": " + String.format("%tT", System.currentTimeMillis()));
+				}
 
 				if (cantidadDeColores < menorCantColores) {
 					menorCantColores = cantidadDeColores;
 					posMenorCantColores = i;
 				}
 			}
-			System.out.println("Menor cantidad de colores: " + menorCantColores);
-			System.out.println("En la pasada: " + (posMenorCantColores + 1) + "\n");
-
 			pw.close();
-
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
